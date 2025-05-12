@@ -1,18 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-<div th:replace="admin/header :: header"></div>
-<body>
-<div th:replace="admin/header :: navbar"></div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <h2 th:text="${post.title}"></h2>
-      <hr/>
-      <h4 th:text="${post.shortDescription}"></h4>
-      <hr/>
-      <div th:utext="${post.content}"></div>
-    </div>
-  </div>
-</div>
-</body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+  <!-- shared header (meta, CSS/JS includes) -->
+  <div th:replace="admin/header :: header"></div>
+
+  <body>
+    <!-- shared navbar -->
+    <div th:replace="admin/header :: navbar"></div>
+
+    <section class="container my-5">
+      <div class="card shadow-lg rounded-3 border-0 overflow-hidden">
+        <div class="card-body p-5">
+
+          <!-- Post Title -->
+          <h2
+            class="display-6 fw-bold mb-3"
+            style="background: linear-gradient(90deg, #4b6cb7, #182848);
+                   -webkit-background-clip: text;
+                   -webkit-text-fill-color: transparent;"
+            th:text="${post.title}">
+            Post Title
+          </h2>
+
+          <!-- Short Description -->
+          <h4 class="text-muted mb-4" th:text="${post.shortDescription}">
+            Short Description
+          </h4>
+
+          <!-- Content -->
+          <div class="post-content text-secondary" th:utext="${post.content}">
+            <!-- Rich HTML content here -->
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- GSAP entrance animation -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        gsap.from('.card', {
+          opacity: 0,
+          y: 20,
+          scale: 0.98,
+          duration: 0.8,
+          ease: 'power2.out'
+        });
+      });
+    </script>
+
+  </body>
 </html>
