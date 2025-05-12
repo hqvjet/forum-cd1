@@ -1,81 +1,53 @@
-# BootForum [Java Bulletin Board]
-
+# Spring Boot 3 Thymeleaf Real-Time Web Application
 ## Overview
-Full features web based forum/discussion/bulletin board software implemented using Java, Spring Boot, EclipseLink, PrimeFaces, and W3.CSS.
+The application showcases various features of Spring Boot and Thymeleaf, providing dynamic web page generation and user authentication.
 
-* Cross-platform supported. All platforms that run Java: Unix/Linux, Windows, or Mac OS.
-* Pre-bundled with embedded H2 database but will work with all relational databases that provide JDBC connectivity. Tested on PostgreSQL, H2, MySQL, SQL Server, and Oracle.
-* Pre-bundled with Tomcat 9. No need to install a separate Web container.
-* Responsive design using W3.CSS framework to display and function well on all screen sizes (desktop, tablet, or mobile phone)
-* _**Very easy**_ to operate: run out of the box with minimal configuration. Run-time configuration flexibility enabled by Spring Boot.
+## Project Highlights
+The BlogApp project, developed during the course, stands as a testament to my newfound skills in Spring Boot and Thymeleaf. Some of its highlights include:
 
-###  [**View BootForum Screenshots**](Screenshots.md "Screenshots")
+- User-friendly blog application interface using Bootstrap CSS and Thymeleaf MVC.
+- Implementation of two roles, ROLE_ADMIN and ROLE_GUEST, to manage posts and comments.
+- Configuring a Many-to-Many relationship between USERS and ROLES using a joining table (user_roles).
+- Establishing a one-to-many relationship between posts and comments for user interaction.
+- Integration of CKEditor 5 for multimedia-rich content creation.
+- Utilization of @Validation for form handling, ensuring data input adheres to specified rules and constraints for a more robust and secure application.
+- Enabling secure user authentication and authorization using Spring Security, granting access to specific endpoints based on user roles.
+## 1) Login Page:
+### Displays an invalid username/password :
+<img width="600" alt="image" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/2a7dc231-d4c9-4751-bcac-a43a3fab75b4">
 
-### [**Live Demo**](http://52.87.177.125/BootForum "BootForum Demo")
+### A logged in User's page:
+<img width="660" alt="image" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/3acee9fb-57a0-4508-a9ed-28c9b50948f4">
 
-### Main Features:
+<strong>Note: The ROLE_ADMIN user has the access to delete/update/view any ROLE_GUEST users comments and posts.</strong> 
 
-* **Discussion/Comment**:
-  * Add discussion
-  * Add / reply / quote comment
-  * Edit own comment
-  * Add vote up/down (per comment)
-  * Comment thumbnails and attachments (file size and count are configurable by administrators)
-  * Replies can be viewed as a comment thread.
-  * Tagged discussions: discussions can be tagged by administrator
+## 2) Registeration Page:
+<img width="600" alt="image" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/ec2b3d40-e209-4d47-b3e4-a1a1574d783e">
+<br><br>
+<img width="600" alt="image" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/7b1c8a7b-b447-496e-8356-7864a7f7b6b7">
 
-* **Live Chat**
-  * Chat live with other connected members
-  * Attach images
-  * HTML Emoji supported
-  * Chat channels are managed (add / edit / delete) by system administrator
+### Password get's stored in a hashed value using BCrypt Algorithm:
+<img width="600" alt="image" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/41c12706-b84c-4a11-8843-70d33cc2316c">
 
-* **Search**
-  * Search comments/discussions by keywords (backed by Lucence Index)
-  * Search members (by username)
 
-* **Members**
-  * View user profile
-  * User reputation
+## 3)Creating a New Post:
+<img width="600" alt="image 1" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/242d5e2d-652a-4f21-b810-49e9a0149063">
+<br><br>
+<img width="600" alt="image 2" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/13a464af-364f-45f6-b3e1-422d43960cd9">
 
-* **Forums**:
-  * Flexible forum structures. Unlimited nested forum groups / sub-groups (categories / sub-categories)
+### Creating a Post's Validation Part:
+<img width="600" alt="image" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/bb10d1f1-4cfb-4e93-8489-d0eab6a625df">
 
-* **User Profile**:
-  * User managed profile: account info, avatar ...
 
-* **Private Messages**:
-  * Send/Receive messages to other forum members 
+## 4) Comment Section:
+#### Comment Validation Part:
+<img width="600" alt="image" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/52b03464-0111-4d3b-8c81-4c3f92fa0d3c">
+<br>
 
-* **Administration**:
-  * Administrator Dash Board
-  * Manage forums: add, edit, delete forum group / sub forum groups (unlimited nested structure)
-  * Manage discussions: add tags, moderate (mark active/inactive)
-  * Manage tags: create / edit, apply to discussions
-  * Manage users: edit (change role, password) / delete / mark active/inactive, etc
-  * Customizable home page display
+#### Once someone writes a comment :
+<img width="600" alt="image" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/f457432a-64a8-4c52-b957-bf68038811ef">
 
-* **UI Theme**: 
-  * Change look and feel based on each user's preferences
-  
-### Prerequisites
-**Java 11**
-Recommended a relational database. If a stand-alone database is not available, the bundled H2 database can be used. **BootForum** has been tested with **PostgreSQL**, **H2**, **MySQL**, **SQL Server**, **Oracle**.
-
-### Try BootForum
-Head to [**Running Instructions**](Running.md "Running Instructions") to download and try BootForum in your environment. Note that a separate relational database is recommended but is not required as **BootForum** is bundled with an embedded H2 database.
-
-### Recommended Environment for Development
-For developers, the followings are recommended
-* **JDK 11** or later
-* **Maven 3** or later
-* IDE: recommend tools with Spring development plugin such as Eclipse based **Spring Tool Suite**
-
-### Note
-
-#### 11/06/2021:
-* Runtime Docker image is provided in Docker-Hub's with image id **ch3nguyen/bootforum**
- 
-#### 12/12/2021:
-Project is updated from JDK version 8 to 11.
-* Another option is to use the Dockerized distribution (which include PostgreSQL database)
+## 5) An unauthorized user can view the Blogs:
+<img width="600" alt="image" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/78a4a90b-1c94-4d7b-bb88-cc0ae36596e6">
+<br><br>
+<img width="600" alt="image" src="https://github.com/harshdeepkalita/Spring-Blog-Project/assets/96279045/ad46f838-e18f-49ea-ad31-dbd6ef393f20">
