@@ -1,39 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
-<div th:replace="~{blog/header :: header}"></div>
-<body>
-<div th:replace="blog/header ::navbar"></div>
-<br/>
-<div class="container">
-    <div class="row">
-        <div class="col-md-9">
-            <div th:each="post : ${postsResponse}">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>
-                            <a th:href="@{/post/{postUrl}(postUrl=${post.url})}"
-                            th:text="${post.title}">
-                            </a>
-                        <div>
-                            <strong th:text="${#temporals.format(post.createdOn,'dd MMMM YYYY')}">
-                            </strong>
-                        </div>
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <span th:text="${post.shortDescription}">
-                            <a th:href="@{/post/postUrl(postUrl=${post.url})}">Read More</a>
-                        </span>
-                    </div>
-                </div>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+  <!-- import shared head -->
+  <head th:replace="blog/header :: header"></head>
+
+  <body>
+    <!-- import navbar -->
+    <div th:replace="blog/header :: navbar"></div>
+
+    <section class="container my-5">
+      <div class="row">
+        <!-- Posts list -->
+        <div class="col-lg-9">
+          <div th:each="post : ${postsResponse}" class="mb-4">
+            <div class="card shadow-sm rounded-3 overflow-hidden">
+              
+              <!-- header with gradient background -->
+              <div class="card-header text-white p-3"
+                   style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+                <h3 class="h5 fw-bold mb-1">
+                  <a th:href="@{/post/{postUrl}(postUrl=${post.url})}"
+                     th:text="${post.title}"
+                     class="text-white text-decoration-none">
+                    Post Title
+                  </a>
+                </h3>
+                <small class="text-white-50"
+                       th:text="${#temporals.format(post.createdOn,'dd MMMM yyyy')}">
+                  01 January 2025
+                </small>
+              </div>
+
+              <!-- body -->
+              <div class="card-body">
+                <p class="text-secondary mb-3"
+                   th:text="${post.shortDescription}">
+                  Short description…
+                </p>
+                <a th:href="@{/post/{postUrl}(postUrl=${post.url})}"
+                   class="btn btn-sm btn-outline-primary rounded-pill px-4">
+                  Read More
+                </a>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="col-md-3">
-            <div th:replace="blog/search :: search"></div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-3">
+          <div th:replace="blog/search :: search"></div>
         </div>
-    </div>
+      </div>
+    </section>
 
-</div>
-
-</body>
+    <!-- subtle entrance animation -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        gsap.from('.card', {
+          opacity: 0,
+          y: 20,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power2.out'
+        });
+      });
+    </script>
+  </body>
 </html>
+

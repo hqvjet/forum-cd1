@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-<div class="card" th:fragment="search">
-  <div class="card-header">
-    <h3 class="text=center">Blog Search</h3>
-  </div>
-  <div class="card-body">
-    <div class="form-group">
-      <form class="form-inline" th:action="@{/page/search}">
-        <div class="input-group">
-          <input class="form-control" name="query"/>
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit">Search</button>
-          </span>
-        </div>
+  <div class="card rounded-4 shadow-sm" th:fragment="search">
+    <div class="card-header bg-primary text-white text-center py-3">
+      <h3 class="mb-0">Blog Search</h3>
+    </div>
+    <div class="card-body p-4">
+      <form th:action="@{/page/search}" method="get" class="d-flex">
+        <input
+          type="text"
+          name="query"
+          class="form-control rounded-pill shadow-sm me-2"
+          placeholder="Search posts..."
+        />
+        <button type="submit" class="btn btn-primary rounded-pill px-4">
+          <i class="bi bi-search me-1"></i>Search
+        </button>
       </form>
     </div>
-
   </div>
-</div>
 </body>
 </html>
+
