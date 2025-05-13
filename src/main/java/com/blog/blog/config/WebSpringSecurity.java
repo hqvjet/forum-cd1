@@ -37,7 +37,8 @@ public class WebSpringSecurity {
                                 .requestMatchers(new AntPathRequestMatcher("/admin/**"))
                                 .hasAnyRole("ADMIN", "GUEST")
                                 .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/post/**")).permitAll()
+                                .requestMatchers("/post/**").permitAll()
+                                .requestMatchers("/page/search").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin( form -> form
@@ -55,5 +56,6 @@ public class WebSpringSecurity {
     public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
+        System.out.println("WebSpringSecurity.configureGlobal()");
     }
 }

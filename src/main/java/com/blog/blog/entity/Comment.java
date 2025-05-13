@@ -24,7 +24,6 @@ public class Comment {
     @Column(nullable = false)
     private String name;
     private String email;
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String content;
     @CreationTimestamp

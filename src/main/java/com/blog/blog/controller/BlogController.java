@@ -42,8 +42,6 @@ public class BlogController {
         return "blog/blog_post";
     }
 
-    // handler method to handle blog post search request
-    // http://localhost:8080/page/search?query=java
     @GetMapping("/page/search")
     public String searchPosts(@RequestParam(value = "query") String query,
                               Model model){

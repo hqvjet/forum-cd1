@@ -26,7 +26,7 @@ public class CommentController {
     }
 
 
-    @PostMapping("/{postUrl}/comments")
+    @PostMapping("/post/{postUrl}/comments")
     public String createComment(@PathVariable("postUrl") String postUrl,
                                 Model model,
                                 @Valid @ModelAttribute("comment") CommentDto commentDto,
@@ -35,12 +35,11 @@ public class CommentController {
         PostDto postDto = postService.findPostByUrl(postUrl);
         if(result.hasErrors())
         {
+            System.out.println("error");
             model.addAttribute("post",postDto);
             model.addAttribute("comment",commentDto);
             return "blog/blog_post";
         }
-        String userEmail = SecurityUtils.getCurrentUser().getUsername();
-        Long userId = userRepository.findByEmail(userEmail).getId();
         commentService.createComment(postUrl,commentDto);
         return "redirect:/post/"+postUrl;
     }
